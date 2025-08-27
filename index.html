@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Interactive SOP: Phase 1 Workflow&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Chosen Palette: Calm Neutrals --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Application Structure Plan: The application is designed as a single-page interactive timeline. This structure was chosen to transform the static, tabular source report into a dynamic and user-centric experience. A vertical timeline is inherently more responsive and scannable than a wide table. The key interaction is a role-based filter, which allows users to instantly see their specific responsibilities within the larger process. This task-oriented design directly supports the goal of making the workflow easily consumable for every team member involved. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Visualization &amp; Content Choices:<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Workflow Steps: Report Info -&gt; 8 procedural steps in a table -&gt; Goal: Organize/Inform -&gt; Viz/Presentation Method: Vertical timeline with expandable cards -&gt; Interaction: Clicking a step header reveals detailed information (Input, Action, Output). Clicking a role filter highlights relevant steps. -&gt; Justification: This layered approach keeps the primary view clean while providing deep detail on demand. Filtering makes the complex process personally relevant to the user. -&gt; Library/Method: HTML/CSS with Tailwind + Vanilla JS.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- Roles &amp; Details: Report Info -&gt; Columns for Role, Time, Input, etc. -&gt; Goal: Inform -&gt; Viz/Presentation Method: Styled text blocks with icons within each expandable card -&gt; Interaction: Revealed on click. -&gt; Justification: Using icons and clear typography for these details makes them highly scannable and easy to digest once a user drills down into a specific step. -&gt; Library/Method: HTML/CSS with Tailwind + Unicode icons. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f9fafb; /* Light Gray */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #374151; /* Dark Gray */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.filter-active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6d28d9; /* Violet */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.filter-inactive {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e5e7eb; /* Gray */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #4b5563;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-left: 4px solid #a78bfa; /* Light Violet */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-card.highlight {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-left: 4px solid #6d28d9;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 14px 0 rgba(109, 40, 217, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(1.02);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-card.dimmed {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(0.98);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-content.open {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 500px; /* Adjust as needed */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="antialiased"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl font-bold text-gray-800"&gt;Phase 1: Category Concept Production&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mt-2 text-lg text-gray-600"&gt;An interactive guide to the creative workflow. Click on a step to see details or filter by role.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="role-filters" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Filters will be dynamically inserted here --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="workflow-timeline" class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Workflow steps will be dynamically inserted here --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function () {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const workflowData = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.1",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Project Setup &amp; Briefing",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Project Manager",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "Variable",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "Project requirements and client brief.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "Prepares the Parent Task in 'Backlog' status, assigns the creative team, and populates the brief fields.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "A fully briefed Parent Task ready for production kickoff."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.2",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Production Kick-Off",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Project Manager (Initiator)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "Immediate (Automated)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "A fully briefed Parent Task moved to 'Category Concept' status.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "Automation creates and assigns three subtasks (`Mood Board`, `Storyboard(s)`, `Deck Write-up`) with a 1-day due date.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "The three required subtasks are generated and assigned, officially starting creative work."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.3",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Creative Execution",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Senior Designer &amp; Senior Copywriter",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "1 Day",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "Assigned subtasks, briefed Parent Task, and the shared Figma link.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "Creatives work simultaneously in Figma to produce all components.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "All creative components are finalized in Figma and individual subtasks are marked as 'Complete'."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.4",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Internal Review",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Creative Director (Lauren)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "1 Day",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "Notification that all subtasks are complete and the deliverable is ready in Figma.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "The Parent Task is automatically reassigned to the Creative Director for a holistic review.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "The Parent Task is placed in the Creative Director's queue for review."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.5",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Creative Approval",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Creative Director",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "(Within 1-day review)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "The complete concept deck in Figma.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "The Creative Director reviews the complete concept deck.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "A decision on the Parent Task: status is changed to either 'Approved' or 'Needs Revisions'."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.6",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Revision Loop",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Senior Designer &amp; Senior Copywriter",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "Variable",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "Revision feedback from the Creative Director.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "The task is automatically reassigned to the creative team for revisions. The team resubmits for review, returning to Step 5.5.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "A revised-concept deck that incorporates the required feedback."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.7",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Prepare Client Deliverable",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Senior Designer",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "TBD",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "An internally approved concept deck.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "(Awaiting Confirmation) Designer packages the work into the confirmed client-ready format (e.g., PDF, gated Figma link), excluding storyboards.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "A final, client-ready presentation file or link."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step: "5.8",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: "Client Submission",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role: "Project Manager",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>time: "Immediate",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>input: "The final, client-ready presentation file or link from the Senior Designer.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>action: "The PM takes the final deliverable and formally sends it to the client for their review and approval.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>output: "The category concept is officially submitted to the client."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const filtersContainer = document.getElementById('role-filters');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const timelineContainer = document.getElementById('workflow-timeline');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Get unique roles for filters by properly splitting and cleaning them</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const roles = ['All', ...new Set(workflowData.flatMap(item =&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>item.role.split(' &amp; ').map(role =&gt; role.split(' (')[0].trim())</p>
+<p class="p1"><span class="Apple-converted-space">            </span>))];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Create filter buttons</p>
+<p class="p1"><span class="Apple-converted-space">            </span>roles.forEach(role =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const button = document.createElement('button');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.textContent = role;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.dataset.role = role;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.className = `filter-btn px-4 py-2 text-sm font-semibold rounded-full transition ${role === 'All' ? 'filter-active' : 'filter-inactive'}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>filtersContainer.appendChild(button);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Create timeline steps</p>
+<p class="p1"><span class="Apple-converted-space">            </span>workflowData.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const stepEl = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>stepEl.className = 'step-card bg-white rounded-lg shadow-sm p-4';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>stepEl.dataset.role = item.role;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>stepEl.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-header flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="flex items-center justify-center w-8 h-8 bg-violet-100 text-violet-700 font-bold rounded-full mr-4"&gt;${item.step}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-lg font-semibold text-gray-800"&gt;${item.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-violet-500 transform transition-transform duration-300"&gt;▼&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="border-t my-4"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm text-gray-600 px-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;&lt;strong&gt;👤 Assigned Role:&lt;/strong&gt; ${item.role}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;&lt;strong&gt;⏱️ Turnaround:&lt;/strong&gt; ${item.time}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="md:col-span-2"&gt;&lt;strong&gt;📥 Input:&lt;/strong&gt; ${item.input}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="md:col-span-2"&gt;&lt;strong&gt;⚙️ Action:&lt;/strong&gt; ${item.action}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="md:col-span-2"&gt;&lt;strong&gt;📤 Output:&lt;/strong&gt; ${item.output}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>timelineContainer.appendChild(stepEl);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add event listener for filter buttons</p>
+<p class="p1"><span class="Apple-converted-space">            </span>filtersContainer.addEventListener('click', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (e.target.classList.contains('filter-btn')) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const selectedRole = e.target.dataset.role;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelectorAll('.filter-btn').forEach(btn =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>btn.classList.remove('filter-active');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>btn.classList.add('filter-inactive');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>e.target.classList.add('filter-active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>e.target.classList.remove('filter-inactive');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelectorAll('.step-card').forEach(card =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>card.classList.remove('highlight', 'dimmed');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (selectedRole === 'All') {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>// do nothing</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>} else if (card.dataset.role.includes(selectedRole)) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>card.classList.add('highlight');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>card.classList.add('dimmed');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add event listener for expanding/collapsing steps</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timelineContainer.addEventListener('click', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const header = e.target.closest('.step-header');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (header) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const content = header.nextElementSibling;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const arrow = header.querySelector('span:last-child');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>content.classList.toggle('open');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (content.classList.contains('open')) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>content.style.paddingTop = '1rem';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>content.style.paddingBottom = '0.5rem';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>arrow.style.transform = 'rotate(180deg)';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>content.style.paddingTop = '0';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>content.style.paddingBottom = '0';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>arrow.style.transform = 'rotate(0deg)';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
