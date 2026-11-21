@@ -1,0 +1,1378 @@
+{
+  "members": [
+    {
+      "id": "5894ed6b",
+      "name": "Abdullah Jahangir",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "85e684c1",
+      "name": "Ahsan Kanaan",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "f691d0ec",
+      "name": "Aishwarya",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "497d5c51",
+      "name": "Aishwarya PS",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "7d143e98",
+      "name": "Aldwin Cabasan",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "27f82207",
+      "name": "Alliyah Vienna Fabello",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "2eb6ec04",
+      "name": "Ammar Bin Zahoor",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "90464175",
+      "name": "Angelo Dado",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "6e4140d6",
+      "name": "Anna Lee Minyao",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "92f1d446",
+      "name": "Anna Minyao",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "91859063",
+      "name": "Anushka Palawat",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "e4140f7f",
+      "name": "Bhuvan Saxena",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "8c4c7b11",
+      "name": "Christian Ven Cagay",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "52f4ce4d",
+      "name": "Christine Joan Ouano",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "c91cc6ac",
+      "name": "Cris C",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "a3b91d1a",
+      "name": "Cris Cadano",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "cb7018c8",
+      "name": "Cristabel Cadano",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "ffacbcab",
+      "name": "Danelle Farquharson",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "91e202b6",
+      "name": "Daniel Gonzalez",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "e13295e6",
+      "name": "Dayanara Torio",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "b7478023",
+      "name": "Diana Nava",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "9616e478",
+      "name": "Duyen Tat",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "12731043",
+      "name": "Erica Jane Punay",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "cdd808a0",
+      "name": "Francesco Albanese",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "d4ab547b",
+      "name": "Gerlyn Remedios",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "2ed35ba4",
+      "name": "Glenia Revilloza",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "bc811cd0",
+      "name": "Hammad Saeed",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "ca78c007",
+      "name": "Hanna Herrmann",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "bdf52d97",
+      "name": "Haris Khan",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "2b1e72de",
+      "name": "Ibtsaam Baig",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "09325bbc",
+      "name": "Jamil Niccolo Mataro",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "4d0e8479",
+      "name": "Jan Gabrielle Nacubuan",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "54f60ed1",
+      "name": "Janel Labtic",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "1a734bc4",
+      "name": "Janel Margaret Labtic",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "a08b3a6f",
+      "name": "Jefferson Lim",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "4f6d4e95",
+      "name": "Jether Nethanel Medalle",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "73957c62",
+      "name": "John David Lalicon",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "42b6591d",
+      "name": "John Paul Omampo",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "29ad05ee",
+      "name": "Juan Camilo Rodriguez",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "85da1b18",
+      "name": "Katarina",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "5b6ec454",
+      "name": "Keith Brian de Leon",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "8a28161c",
+      "name": "Keith de Leon",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "eb37bbd5",
+      "name": "Khrizia Villa",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "060be2e1",
+      "name": "Kim Go",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "5b8b894b",
+      "name": "Muhammad Awais",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "8b81e34f",
+      "name": "Muhammad Haseeb",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "107cf206",
+      "name": "Muhammad Kamran",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "60169469",
+      "name": "Muhammad Saeed",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "64977f4d",
+      "name": "Oleg Lisitsa",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "8855cc51",
+      "name": "Paige Steed",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "401cccd4",
+      "name": "Psalm Lalicon",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "5c27bd48",
+      "name": "Randy Fernandez",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "0c708c45",
+      "name": "Reymark Guico",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "36cf7802",
+      "name": "Rian Wijaya",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "4443dba2",
+      "name": "Rizza Ritz Buling",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "2b0f8a22",
+      "name": "Sharry Mae Encarquez",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "5d2c2af4",
+      "name": "Sneha Agarwal",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "2bf9412f",
+      "name": "Sohel Sayyad",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "c96cda8a",
+      "name": "Stanley Sing",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "51d92bbb",
+      "name": "Vladimir Kotukhov",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "36ebdedd",
+      "name": "Vuvu Dhlula",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "5115a5ee",
+      "name": "grace blessing adajar",
+      "role": "",
+      "allowance": 25
+    },
+    {
+      "id": "7a398f37",
+      "name": "joshua cuerdo",
+      "role": "",
+      "allowance": 25
+    }
+  ],
+  "requests": [
+    {
+      "id": "300230f2",
+      "memberId": "f691d0ec",
+      "type": "annual",
+      "start": "2026-12-10",
+      "end": "2026-12-11",
+      "reason": "",
+      "status": "pending",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "5b259618",
+      "memberId": "4d0e8479",
+      "type": "sick",
+      "start": "2026-11-25",
+      "end": "2026-11-25",
+      "reason": "",
+      "status": "pending",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "deaf0e36",
+      "memberId": "8c4c7b11",
+      "type": "annual",
+      "start": "2026-12-01",
+      "end": "2026-12-01",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "f8039150",
+      "memberId": "8b81e34f",
+      "type": "annual",
+      "start": "2026-12-03",
+      "end": "2026-12-05",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "eb38ef9e",
+      "memberId": "c91cc6ac",
+      "type": "personal",
+      "start": "2026-11-27",
+      "end": "2026-11-27",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "22709467",
+      "memberId": "c91cc6ac",
+      "type": "personal",
+      "start": "2026-11-13",
+      "end": "2026-11-13",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "c702f8e4",
+      "memberId": "09325bbc",
+      "type": "annual",
+      "start": "2026-12-04",
+      "end": "2026-12-07",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "38b43977",
+      "memberId": "e13295e6",
+      "type": "annual",
+      "start": "2026-12-03",
+      "end": "2026-12-05",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "c5e7909b",
+      "memberId": "36ebdedd",
+      "type": "sick",
+      "start": "2026-11-02",
+      "end": "2026-11-04",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a3a5d84e",
+      "memberId": "5894ed6b",
+      "type": "annual",
+      "start": "2026-11-12",
+      "end": "2026-11-25",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "3884330c",
+      "memberId": "e4140f7f",
+      "type": "annual",
+      "start": "2026-10-23",
+      "end": "2026-10-23",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "4133e6c5",
+      "memberId": "e4140f7f",
+      "type": "annual",
+      "start": "2026-10-23",
+      "end": "2026-10-23",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "f671765d",
+      "memberId": "e4140f7f",
+      "type": "annual",
+      "start": "2026-12-17",
+      "end": "2026-12-18",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "ee67943c",
+      "memberId": "5d2c2af4",
+      "type": "annual",
+      "start": "2026-10-16",
+      "end": "2026-10-16",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "0d30c425",
+      "memberId": "54f60ed1",
+      "type": "annual",
+      "start": "2027-01-11",
+      "end": "2027-01-20",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a5e23fed",
+      "memberId": "92f1d446",
+      "type": "annual",
+      "start": "2027-01-26",
+      "end": "2027-02-01",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "9a7fa62e",
+      "memberId": "92f1d446",
+      "type": "annual",
+      "start": "2026-12-02",
+      "end": "2026-12-02",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "cf4c1fba",
+      "memberId": "ffacbcab",
+      "type": "sick",
+      "start": "2026-10-02",
+      "end": "2026-10-03",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "38f761f5",
+      "memberId": "1a734bc4",
+      "type": "sick",
+      "start": "2026-10-02",
+      "end": "2026-10-02",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "e502c8d7",
+      "memberId": "e4140f7f",
+      "type": "sick",
+      "start": "2026-09-28",
+      "end": "2026-09-28",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "bd121369",
+      "memberId": "cb7018c8",
+      "type": "annual",
+      "start": "2026-09-21",
+      "end": "2026-09-21",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "6164a0be",
+      "memberId": "9616e478",
+      "type": "annual",
+      "start": "2026-09-17",
+      "end": "2026-09-20",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "354ee34c",
+      "memberId": "5d2c2af4",
+      "type": "annual",
+      "start": "2026-09-18",
+      "end": "2026-09-18",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a145c7d1",
+      "memberId": "4d0e8479",
+      "type": "sick",
+      "start": "2026-09-14",
+      "end": "2026-09-14",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "5e6b4cae",
+      "memberId": "497d5c51",
+      "type": "annual",
+      "start": "2026-08-28",
+      "end": "2026-08-28",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "4e88cb54",
+      "memberId": "2b1e72de",
+      "type": "annual",
+      "start": "2026-09-25",
+      "end": "2026-09-28",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "2642dd74",
+      "memberId": "85e684c1",
+      "type": "sick",
+      "start": "2026-08-10",
+      "end": "2026-08-11",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "0dd39c0c",
+      "memberId": "1a734bc4",
+      "type": "annual",
+      "start": "2026-08-05",
+      "end": "2026-08-11",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "6c0e08fd",
+      "memberId": "4d0e8479",
+      "type": "annual",
+      "start": "2026-07-24",
+      "end": "2026-07-24",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "c5cc38cf",
+      "memberId": "1a734bc4",
+      "type": "sick",
+      "start": "2026-07-16",
+      "end": "2026-07-16",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "fa4e1ea2",
+      "memberId": "2ed35ba4",
+      "type": "annual",
+      "start": "2026-07-13",
+      "end": "2026-07-13",
+      "reason": "",
+      "status": "pending",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "c28939ff",
+      "memberId": "2ed35ba4",
+      "type": "annual",
+      "start": "2026-07-13",
+      "end": "2026-07-13",
+      "reason": "",
+      "status": "pending",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "7626d103",
+      "memberId": "2ed35ba4",
+      "type": "annual",
+      "start": "2026-07-06",
+      "end": "2026-07-06",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "5f83564d",
+      "memberId": "5115a5ee",
+      "type": "sick",
+      "start": "2026-06-26",
+      "end": "2026-06-26",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "919d481c",
+      "memberId": "4d0e8479",
+      "type": "sick",
+      "start": "2026-06-25",
+      "end": "2026-06-25",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "b304a7ae",
+      "memberId": "a08b3a6f",
+      "type": "annual",
+      "start": "2026-06-18",
+      "end": "2026-06-18",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a4928f6d",
+      "memberId": "ffacbcab",
+      "type": "sick",
+      "start": "2026-06-18",
+      "end": "2026-06-18",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "68a3d19b",
+      "memberId": "ffacbcab",
+      "type": "personal",
+      "start": "2026-06-10",
+      "end": "2026-06-10",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "b3b713da",
+      "memberId": "060be2e1",
+      "type": "annual",
+      "start": "2026-06-09",
+      "end": "2026-06-09",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "70228c3d",
+      "memberId": "e13295e6",
+      "type": "annual",
+      "start": "2026-06-15",
+      "end": "2026-06-17",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "cdbaba6a",
+      "memberId": "27f82207",
+      "type": "annual",
+      "start": "2026-05-22",
+      "end": "2026-05-22",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "74b11fdd",
+      "memberId": "5894ed6b",
+      "type": "annual",
+      "start": "2026-05-25",
+      "end": "2026-05-25",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "1409e06c",
+      "memberId": "90464175",
+      "type": "sick",
+      "start": "2026-05-19",
+      "end": "2026-05-20",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "b5db10f5",
+      "memberId": "107cf206",
+      "type": "annual",
+      "start": "2026-05-27",
+      "end": "2026-05-27",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "4a127ed6",
+      "memberId": "a3b91d1a",
+      "type": "annual",
+      "start": "2026-05-18",
+      "end": "2026-05-18",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "4a1b74d3",
+      "memberId": "5b8b894b",
+      "type": "annual",
+      "start": "2026-05-21",
+      "end": "2026-05-21",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "2ed8df34",
+      "memberId": "36cf7802",
+      "type": "annual",
+      "start": "2026-05-14",
+      "end": "2026-05-14",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "f057d45f",
+      "memberId": "cdd808a0",
+      "type": "annual",
+      "start": "2026-07-09",
+      "end": "2026-07-10",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "4baef9d1",
+      "memberId": "a3b91d1a",
+      "type": "annual",
+      "start": "2026-05-28",
+      "end": "2026-05-29",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "3b6188f3",
+      "memberId": "a3b91d1a",
+      "type": "annual",
+      "start": "2026-05-14",
+      "end": "2026-05-14",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "69466c2e",
+      "memberId": "27f82207",
+      "type": "annual",
+      "start": "2026-05-07",
+      "end": "2026-05-08",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a739594d",
+      "memberId": "2bf9412f",
+      "type": "sick",
+      "start": "2026-05-08",
+      "end": "2026-05-08",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "86eca645",
+      "memberId": "2eb6ec04",
+      "type": "annual",
+      "start": "2026-05-26",
+      "end": "2026-05-29",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "f530bc21",
+      "memberId": "401cccd4",
+      "type": "annual",
+      "start": "2026-05-11",
+      "end": "2026-05-12",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a0ded799",
+      "memberId": "6e4140d6",
+      "type": "annual",
+      "start": "2026-05-04",
+      "end": "2026-05-04",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "74908006",
+      "memberId": "6e4140d6",
+      "type": "annual",
+      "start": "2026-05-04",
+      "end": "2026-05-04",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "1c539925",
+      "memberId": "cdd808a0",
+      "type": "annual",
+      "start": "2026-06-17",
+      "end": "2026-06-24",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "ecdfbbb0",
+      "memberId": "ffacbcab",
+      "type": "personal",
+      "start": "2026-04-23",
+      "end": "2026-04-23",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "0818779a",
+      "memberId": "27f82207",
+      "type": "sick",
+      "start": "2026-04-23",
+      "end": "2026-04-23",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "d8d74ccd",
+      "memberId": "4443dba2",
+      "type": "annual",
+      "start": "2026-04-21",
+      "end": "2026-04-21",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a86503fb",
+      "memberId": "8855cc51",
+      "type": "annual",
+      "start": "2026-05-08",
+      "end": "2026-05-08",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "ae51cf93",
+      "memberId": "4f6d4e95",
+      "type": "annual",
+      "start": "2026-04-15",
+      "end": "2026-04-15",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "bb85c033",
+      "memberId": "2bf9412f",
+      "type": "personal",
+      "start": "2026-04-08",
+      "end": "2026-04-08",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "7d1fff82",
+      "memberId": "27f82207",
+      "type": "annual",
+      "start": "2026-03-25",
+      "end": "2026-03-25",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "8e3f6426",
+      "memberId": "0c708c45",
+      "type": "annual",
+      "start": "2026-03-19",
+      "end": "2026-03-19",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "b960cd05",
+      "memberId": "5c27bd48",
+      "type": "sick",
+      "start": "2026-03-18",
+      "end": "2026-03-18",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "91718f64",
+      "memberId": "12731043",
+      "type": "sick",
+      "start": "2026-03-11",
+      "end": "2026-03-11",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "6fbffb51",
+      "memberId": "91859063",
+      "type": "annual",
+      "start": "2026-03-05",
+      "end": "2026-03-05",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "a4c5e5bb",
+      "memberId": "eb37bbd5",
+      "type": "annual",
+      "start": "2026-03-06",
+      "end": "2026-03-06",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "58108dd8",
+      "memberId": "73957c62",
+      "type": "annual",
+      "start": "2026-04-09",
+      "end": "2026-04-15",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "fcfcf073",
+      "memberId": "60169469",
+      "type": "annual",
+      "start": "2026-03-30",
+      "end": "2026-04-03",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "ff766379",
+      "memberId": "8b81e34f",
+      "type": "annual",
+      "start": "2026-03-24",
+      "end": "2026-03-24",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "30032e16",
+      "memberId": "29ad05ee",
+      "type": "annual",
+      "start": "2026-03-02",
+      "end": "2026-03-02",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "44647ae0",
+      "memberId": "52f4ce4d",
+      "type": "annual",
+      "start": "2026-02-09",
+      "end": "2026-02-10",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "5e47bc97",
+      "memberId": "ca78c007",
+      "type": "annual",
+      "start": "2026-01-23",
+      "end": "2026-01-23",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "9b7f4718",
+      "memberId": "7d143e98",
+      "type": "annual",
+      "start": "2026-01-15",
+      "end": "2026-01-15",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "8f65c99c",
+      "memberId": "2ed35ba4",
+      "type": "annual",
+      "start": "2026-01-08",
+      "end": "2026-01-08",
+      "reason": "",
+      "status": "rejected",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "4d06d5d1",
+      "memberId": "5b6ec454",
+      "type": "sick",
+      "start": "2025-12-15",
+      "end": "2025-12-16",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "22dcca9b",
+      "memberId": "b7478023",
+      "type": "annual",
+      "start": "2025-01-07",
+      "end": "2025-01-07",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "d2e11999",
+      "memberId": "42b6591d",
+      "type": "annual",
+      "start": "2025-12-12",
+      "end": "2025-12-12",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "fcc3b0d6",
+      "memberId": "8855cc51",
+      "type": "annual",
+      "start": "2025-12-05",
+      "end": "2025-12-05",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "e708fa9c",
+      "memberId": "bc811cd0",
+      "type": "annual",
+      "start": "2025-11-21",
+      "end": "2025-11-21",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "e3d321d7",
+      "memberId": "bc811cd0",
+      "type": "annual",
+      "start": "2025-11-28",
+      "end": "2025-11-28",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "bad763d6",
+      "memberId": "51d92bbb",
+      "type": "annual",
+      "start": "2025-11-27",
+      "end": "2025-11-28",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "9f6c887c",
+      "memberId": "a3b91d1a",
+      "type": "annual",
+      "start": "2025-12-08",
+      "end": "2025-12-12",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "34f7dea1",
+      "memberId": "8a28161c",
+      "type": "sick",
+      "start": "2025-11-07",
+      "end": "2025-11-08",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "90faf910",
+      "memberId": "b7478023",
+      "type": "annual",
+      "start": "2025-12-05",
+      "end": "2025-12-05",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "50871269",
+      "memberId": "bdf52d97",
+      "type": "annual",
+      "start": "2025-12-01",
+      "end": "2025-12-05",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "ae0ec640",
+      "memberId": "ca78c007",
+      "type": "annual",
+      "start": "2025-11-28",
+      "end": "2025-11-28",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "781c818b",
+      "memberId": "7a398f37",
+      "type": "annual",
+      "start": "2025-12-08",
+      "end": "2025-12-11",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "2dca1192",
+      "memberId": "c91cc6ac",
+      "type": "annual",
+      "start": "2025-12-08",
+      "end": "2025-12-12",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "8da6efae",
+      "memberId": "c96cda8a",
+      "type": "personal",
+      "start": "2025-11-03",
+      "end": "2025-11-04",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "f076f815",
+      "memberId": "2b0f8a22",
+      "type": "sick",
+      "start": "2025-10-28",
+      "end": "2025-10-30",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "f76944d0",
+      "memberId": "7a398f37",
+      "type": "sick",
+      "start": "2025-10-29",
+      "end": "2025-10-29",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "2037112a",
+      "memberId": "d4ab547b",
+      "type": "personal",
+      "start": "2025-10-27",
+      "end": "2025-10-31",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "fceaabfd",
+      "memberId": "64977f4d",
+      "type": "other",
+      "start": "2025-10-23",
+      "end": "2025-10-23",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "55304ce5",
+      "memberId": "d4ab547b",
+      "type": "annual",
+      "start": "2025-10-24",
+      "end": "2025-10-24",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "1738a19a",
+      "memberId": "91e202b6",
+      "type": "annual",
+      "start": "2025-10-21",
+      "end": "2025-10-21",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    },
+    {
+      "id": "da644bad",
+      "memberId": "85da1b18",
+      "type": "annual",
+      "start": "2025-10-17",
+      "end": "2025-10-17",
+      "reason": "",
+      "status": "approved",
+      "createdAt": "2026-11-21T13:48:15.898537+00:00"
+    }
+  ],
+  "settings": {
+    "year": 2026
+  },
+  "calCursor": "2026-11-01"
+}
