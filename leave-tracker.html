@@ -210,8 +210,8 @@
             <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-2">Sync &amp; data</h2>
                 <p class="text-sm text-gray-600 mb-4">
-                    Data is stored in your browser only. To share across the team, export a JSON snapshot and have teammates import it — or
-                    commit the JSON to your repo and import after each pull.
+                    On first visit the tracker loads <code>leave-data.json</code> (a snapshot from the ClickUp HR Leave Tracker list).
+                    Edits you make after that live in your browser only; use export / import to share, or re-pull the snapshot below.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
                     <button id="export-btn" class="px-4 py-2 rounded bg-violet-700 hover:bg-violet-800 text-white text-sm font-semibold">Export JSON</button>
@@ -219,7 +219,7 @@
                         Import JSON
                         <input id="import-input" type="file" accept="application/json" class="hidden">
                     </label>
-                    <button id="seed-btn" class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 text-sm">Load sample AGL team</button>
+                    <button id="seed-btn" class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 text-sm">Reload from ClickUp snapshot</button>
                     <button id="clear-btn" class="px-4 py-2 rounded bg-red-100 hover:bg-red-200 text-red-800 text-sm">Clear everything</button>
                 </div>
                 <label class="text-sm block mb-1 text-gray-600">Year for balance calculation</label>
@@ -605,19 +605,20 @@
         });
 
         document.getElementById('seed-btn').addEventListener('click', () => {
-            if (state.members.length && !confirm('This will add sample members alongside existing data. Continue?')) return;
-            const samples = [
-                { name: 'Allan',  role: 'Founder',          allowance: 25 },
-                { name: 'Lauren', role: 'Creative Director', allowance: 25 },
-                { name: 'Asif',   role: 'Pod Lead',          allowance: 25 },
-                { name: 'Vuvu',   role: 'Pod Lead',          allowance: 25 },
-                { name: 'Trevon', role: 'Pod Lead',          allowance: 25 },
-                { name: 'Nik',    role: 'Pod Lead',          allowance: 25 },
-                { name: 'Sneha',  role: 'Pod Lead',          allowance: 25 },
-                { name: 'Oleg',   role: 'Pod Lead',          allowance: 25 }
-            ];
-            samples.forEach(s => state.members.push(Object.assign({ id: uid() }, s)));
-            saveState(); renderAll();
+            if (!confirm('Replace all current data with the latest leave-data.json snapshot?')) return;
+            fetch('leave-data.json', { cache: 'no-store' })
+                .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+                .then(data => {
+                    if (!data || !Array.isArray(data.members) || !Array.isArray(data.requests)) {
+                        throw new Error('Unexpected file shape');
+                    }
+                    state = Object.assign(
+                        { settings: { year: new Date().getFullYear() }, calCursor: todayISO() },
+                        data
+                    );
+                    saveState(); renderAll();
+                })
+                .catch(err => alert('Could not load leave-data.json: ' + err.message));
         });
 
         document.getElementById('clear-btn').addEventListener('click', () => {
@@ -642,7 +643,27 @@
             }
         }
 
-        renderAll();
+        function bootstrap() {
+            if (state.members.length === 0 && state.requests.length === 0) {
+                fetch('leave-data.json', { cache: 'no-store' })
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (data && Array.isArray(data.members) && Array.isArray(data.requests)) {
+                            state = Object.assign(
+                                { settings: { year: new Date().getFullYear() }, calCursor: todayISO() },
+                                data
+                            );
+                            saveState();
+                        }
+                    })
+                    .catch(() => {})
+                    .finally(renderAll);
+            } else {
+                renderAll();
+            }
+        }
+
+        bootstrap();
     })();
     </script>
 </body>
