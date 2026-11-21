@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGL Leave Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #374151;
+        }
+        .tab-active {
+            background-color: #6d28d9;
+            color: #ffffff;
+        }
+        .tab-inactive {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+        .leave-annual   { background-color: #ddd6fe; color: #5b21b6; border-left: 3px solid #6d28d9; }
+        .leave-sick     { background-color: #fee2e2; color: #991b1b; border-left: 3px solid #dc2626; }
+        .leave-personal { background-color: #fef3c7; color: #92400e; border-left: 3px solid #d97706; }
+        .leave-other    { background-color: #d1fae5; color: #065f46; border-left: 3px solid #059669; }
+        .cal-day {
+            min-height: 90px;
+            border: 1px solid #e5e7eb;
+            padding: 4px;
+            font-size: 11px;
+            background: #ffffff;
+        }
+        .cal-day.other-month { background: #f3f4f6; color: #9ca3af; }
+        .cal-day.today .day-number {
+            background: #6d28d9;
+            color: #fff;
+            border-radius: 9999px;
+            padding: 0 6px;
+        }
+        .pill {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 9999px;
+            font-size: 10px;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-6xl">
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-gray-800">AGL Leave Tracker</h1>
+            <p class="mt-2 text-lg text-gray-600">A single home for the team's time off.</p>
+        </header>
+
+        <div id="tabs" class="flex flex-wrap justify-center gap-2 mb-6">
+            <button data-tab="dashboard"   class="tab-btn tab-active   px-4 py-2 text-sm font-semibold rounded-full transition">Dashboard</button>
+            <button data-tab="calendar"    class="tab-btn tab-inactive px-4 py-2 text-sm font-semibold rounded-full transition">Calendar</button>
+            <button data-tab="requests"    class="tab-btn tab-inactive px-4 py-2 text-sm font-semibold rounded-full transition">Requests</button>
+            <button data-tab="team"        class="tab-btn tab-inactive px-4 py-2 text-sm font-semibold rounded-full transition">Team</button>
+            <button data-tab="settings"    class="tab-btn tab-inactive px-4 py-2 text-sm font-semibold rounded-full transition">Sync &amp; Data</button>
+        </div>
+
+        <!-- Dashboard -->
+        <section id="panel-dashboard" class="panel">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow-sm p-4">
+                    <div class="text-xs uppercase text-gray-500 font-semibold">On leave today</div>
+                    <div id="stat-today" class="text-3xl font-bold text-violet-700 mt-1">0</div>
+                    <div id="stat-today-names" class="text-xs text-gray-500 mt-1"></div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4">
+                    <div class="text-xs uppercase text-gray-500 font-semibold">On leave this week</div>
+                    <div id="stat-week" class="text-3xl font-bold text-violet-700 mt-1">0</div>
+                    <div id="stat-week-names" class="text-xs text-gray-500 mt-1"></div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4">
+                    <div class="text-xs uppercase text-gray-500 font-semibold">Pending requests</div>
+                    <div id="stat-pending" class="text-3xl font-bold text-violet-700 mt-1">0</div>
+                    <div class="text-xs text-gray-500 mt-1">Awaiting approval</div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Upcoming leaves</h2>
+                <div id="upcoming-list" class="space-y-2"></div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Annual-leave balance</h2>
+                <div id="balance-list" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- Calendar -->
+        <section id="panel-calendar" class="panel hidden">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <button id="cal-prev" class="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-sm">◀ Prev</button>
+                    <h2 id="cal-title" class="text-xl font-semibold text-gray-800"></h2>
+                    <button id="cal-next" class="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-sm">Next ▶</button>
+                </div>
+                <div class="grid grid-cols-7 text-center text-xs font-semibold text-gray-500 mb-1">
+                    <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+                </div>
+                <div id="cal-grid" class="grid grid-cols-7"></div>
+                <div class="flex flex-wrap gap-3 mt-4 text-xs text-gray-600">
+                    <span><span class="inline-block w-3 h-3 rounded-sm align-middle" style="background:#ddd6fe"></span> Annual</span>
+                    <span><span class="inline-block w-3 h-3 rounded-sm align-middle" style="background:#fee2e2"></span> Sick</span>
+                    <span><span class="inline-block w-3 h-3 rounded-sm align-middle" style="background:#fef3c7"></span> Personal</span>
+                    <span><span class="inline-block w-3 h-3 rounded-sm align-middle" style="background:#d1fae5"></span> Other</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requests -->
+        <section id="panel-requests" class="panel hidden">
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Submit leave request</h2>
+                <form id="leave-form" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">Team member</span>
+                        <select name="memberId" required class="w-full border rounded px-3 py-2"></select>
+                    </label>
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">Leave type</span>
+                        <select name="type" required class="w-full border rounded px-3 py-2">
+                            <option value="annual">Annual</option>
+                            <option value="sick">Sick</option>
+                            <option value="personal">Personal</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">Start date</span>
+                        <input type="date" name="start" required class="w-full border rounded px-3 py-2">
+                    </label>
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">End date</span>
+                        <input type="date" name="end" required class="w-full border rounded px-3 py-2">
+                    </label>
+                    <label class="text-sm md:col-span-2">
+                        <span class="block text-gray-600 mb-1">Reason / notes (optional)</span>
+                        <input type="text" name="reason" class="w-full border rounded px-3 py-2" placeholder="e.g. Family trip">
+                    </label>
+                    <div class="md:col-span-2 flex gap-2 justify-end">
+                        <button type="reset" class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 text-sm">Clear</button>
+                        <button type="submit" class="px-4 py-2 rounded bg-violet-700 hover:bg-violet-800 text-white text-sm font-semibold">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
+                    <h2 class="text-xl font-semibold text-gray-800">All requests</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <select id="filter-member" class="border rounded px-2 py-1 text-sm">
+                            <option value="all">All members</option>
+                        </select>
+                        <select id="filter-status" class="border rounded px-2 py-1 text-sm">
+                            <option value="all">All statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="requests-list" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section id="panel-team" class="panel hidden">
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Add team member</h2>
+                <form id="member-form" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">Name</span>
+                        <input type="text" name="name" required class="w-full border rounded px-3 py-2">
+                    </label>
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">Role</span>
+                        <input type="text" name="role" class="w-full border rounded px-3 py-2" placeholder="e.g. Senior Designer">
+                    </label>
+                    <label class="text-sm">
+                        <span class="block text-gray-600 mb-1">Annual-leave days</span>
+                        <input type="number" name="allowance" required min="0" step="0.5" value="25" class="w-full border rounded px-3 py-2">
+                    </label>
+                    <div class="md:col-span-3 flex justify-end">
+                        <button type="submit" class="px-4 py-2 rounded bg-violet-700 hover:bg-violet-800 text-white text-sm font-semibold">Add member</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Team</h2>
+                <div id="team-list" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- Settings / sync -->
+        <section id="panel-settings" class="panel hidden">
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Sync &amp; data</h2>
+                <p class="text-sm text-gray-600 mb-4">
+                    Data is stored in your browser only. To share across the team, export a JSON snapshot and have teammates import it — or
+                    commit the JSON to your repo and import after each pull.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button id="export-btn" class="px-4 py-2 rounded bg-violet-700 hover:bg-violet-800 text-white text-sm font-semibold">Export JSON</button>
+                    <label class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 text-sm font-semibold cursor-pointer">
+                        Import JSON
+                        <input id="import-input" type="file" accept="application/json" class="hidden">
+                    </label>
+                    <button id="seed-btn" class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 text-sm">Load sample AGL team</button>
+                    <button id="clear-btn" class="px-4 py-2 rounded bg-red-100 hover:bg-red-200 text-red-800 text-sm">Clear everything</button>
+                </div>
+                <label class="text-sm block mb-1 text-gray-600">Year for balance calculation</label>
+                <input id="year-input" type="number" min="2000" max="2100" class="border rounded px-3 py-2 w-32 text-sm">
+            </div>
+        </section>
+    </div>
+
+    <script>
+    (function () {
+        const STORAGE_KEY = 'agl-leave-tracker-v1';
+        const uid = () => Math.random().toString(36).slice(2, 10);
+        const todayISO = () => new Date().toISOString().slice(0, 10);
+
+        let state = loadState();
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) return JSON.parse(raw);
+            } catch (e) {}
+            return {
+                members: [],
+                requests: [],
+                settings: { year: new Date().getFullYear() },
+                calCursor: new Date().toISOString().slice(0, 7) + '-01'
+            };
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function parseISO(s) {
+            const [y, m, d] = s.split('-').map(Number);
+            return new Date(y, m - 1, d);
+        }
+
+        function fmtDate(iso) {
+            const d = parseISO(iso);
+            return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        function businessDays(startISO, endISO) {
+            let n = 0;
+            const s = parseISO(startISO), e = parseISO(endISO);
+            if (e < s) return 0;
+            for (let d = new Date(s); d <= e; d.setDate(d.getDate() + 1)) {
+                const dow = d.getDay();
+                if (dow !== 0 && dow !== 6) n++;
+            }
+            return n;
+        }
+
+        function datesBetween(startISO, endISO) {
+            const out = [];
+            const s = parseISO(startISO), e = parseISO(endISO);
+            for (let d = new Date(s); d <= e; d.setDate(d.getDate() + 1)) {
+                out.push(new Date(d).toISOString().slice(0, 10));
+            }
+            return out;
+        }
+
+        function memberName(id) {
+            const m = state.members.find(x => x.id === id);
+            return m ? m.name : 'Unknown';
+        }
+
+        /* ---------- Tabs ---------- */
+        document.getElementById('tabs').addEventListener('click', (e) => {
+            const btn = e.target.closest('.tab-btn');
+            if (!btn) return;
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('tab-inactive');
+            });
+            btn.classList.add('tab-active');
+            btn.classList.remove('tab-inactive');
+            document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('panel-' + btn.dataset.tab).classList.remove('hidden');
+        });
+
+        /* ---------- Rendering ---------- */
+        function renderAll() {
+            renderMemberSelects();
+            renderDashboard();
+            renderCalendar();
+            renderRequests();
+            renderTeam();
+            renderSettings();
+        }
+
+        function renderMemberSelects() {
+            const formSel = document.querySelector('#leave-form select[name=memberId]');
+            const filterSel = document.getElementById('filter-member');
+            const sorted = [...state.members].sort((a, b) => a.name.localeCompare(b.name));
+            formSel.innerHTML = sorted.length
+                ? sorted.map(m => `<option value="${m.id}">${escapeHtml(m.name)}</option>`).join('')
+                : '<option value="">(Add a team member first)</option>';
+            const currentFilter = filterSel.value || 'all';
+            filterSel.innerHTML = '<option value="all">All members</option>' +
+                sorted.map(m => `<option value="${m.id}">${escapeHtml(m.name)}</option>`).join('');
+            filterSel.value = currentFilter;
+        }
+
+        function renderDashboard() {
+            const today = todayISO();
+            const approved = state.requests.filter(r => r.status === 'approved');
+            const onToday = approved.filter(r => r.start <= today && today <= r.end);
+            const weekStart = new Date();
+            const dow = (weekStart.getDay() + 6) % 7;
+            weekStart.setDate(weekStart.getDate() - dow);
+            const weekEnd = new Date(weekStart);
+            weekEnd.setDate(weekEnd.getDate() + 6);
+            const ws = weekStart.toISOString().slice(0, 10);
+            const we = weekEnd.toISOString().slice(0, 10);
+            const onWeek = approved.filter(r => r.start <= we && r.end >= ws);
+            const pending = state.requests.filter(r => r.status === 'pending');
+
+            document.getElementById('stat-today').textContent = onToday.length;
+            document.getElementById('stat-today-names').textContent =
+                onToday.map(r => memberName(r.memberId)).join(', ') || 'Nobody—full house.';
+            document.getElementById('stat-week').textContent = new Set(onWeek.map(r => r.memberId)).size;
+            document.getElementById('stat-week-names').textContent =
+                [...new Set(onWeek.map(r => memberName(r.memberId)))].join(', ') || '—';
+            document.getElementById('stat-pending').textContent = pending.length;
+
+            const upcoming = state.requests
+                .filter(r => r.end >= today && r.status !== 'rejected')
+                .sort((a, b) => a.start.localeCompare(b.start))
+                .slice(0, 10);
+            const upEl = document.getElementById('upcoming-list');
+            upEl.innerHTML = upcoming.length
+                ? upcoming.map(r => requestRow(r, { compact: true })).join('')
+                : '<p class="text-sm text-gray-500">No upcoming leaves.</p>';
+
+            const balEl = document.getElementById('balance-list');
+            const year = state.settings.year;
+            balEl.innerHTML = state.members.length
+                ? state.members.map(m => {
+                    const used = state.requests
+                        .filter(r => r.memberId === m.id && r.type === 'annual' && r.status === 'approved')
+                        .filter(r => r.start.slice(0, 4) === String(year) || r.end.slice(0, 4) === String(year))
+                        .reduce((sum, r) => sum + businessDays(
+                            r.start < year + '-01-01' ? year + '-01-01' : r.start,
+                            r.end > year + '-12-31' ? year + '-12-31' : r.end
+                        ), 0);
+                    const remaining = m.allowance - used;
+                    const pct = m.allowance > 0 ? Math.min(100, (used / m.allowance) * 100) : 0;
+                    return `
+                        <div class="border rounded p-2">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="font-semibold">${escapeHtml(m.name)}</span>
+                                <span class="text-gray-600">${used} / ${m.allowance} days used · <span class="${remaining < 0 ? 'text-red-600' : 'text-emerald-700'} font-semibold">${remaining} left</span></span>
+                            </div>
+                            <div class="h-2 bg-gray-100 rounded mt-1 overflow-hidden">
+                                <div class="h-full bg-violet-600" style="width:${pct}%"></div>
+                            </div>
+                        </div>`;
+                }).join('')
+                : '<p class="text-sm text-gray-500">Add team members to see balances.</p>';
+        }
+
+        function requestRow(r, opts = {}) {
+            const typeClass = 'leave-' + r.type;
+            const statusBadge = {
+                pending:  '<span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800">Pending</span>',
+                approved: '<span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Approved</span>',
+                rejected: '<span class="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-800">Rejected</span>'
+            }[r.status];
+            const days = businessDays(r.start, r.end);
+            const actions = opts.compact ? '' : `
+                <div class="flex gap-1 mt-2 md:mt-0">
+                    ${r.status !== 'approved' ? `<button data-action="approve" data-id="${r.id}" class="text-xs px-2 py-1 rounded bg-emerald-100 hover:bg-emerald-200 text-emerald-800">Approve</button>` : ''}
+                    ${r.status !== 'rejected' ? `<button data-action="reject"  data-id="${r.id}" class="text-xs px-2 py-1 rounded bg-red-100 hover:bg-red-200 text-red-800">Reject</button>` : ''}
+                    ${r.status !== 'pending'  ? `<button data-action="reset"   data-id="${r.id}" class="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-700">Reset</button>` : ''}
+                    <button data-action="delete" data-id="${r.id}" class="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-700">Delete</button>
+                </div>`;
+            return `
+                <div class="${typeClass} rounded p-2 flex flex-col md:flex-row md:items-center md:justify-between text-sm">
+                    <div>
+                        <div class="font-semibold">${escapeHtml(memberName(r.memberId))}
+                            <span class="pill" style="background:rgba(255,255,255,0.4)">${r.type}</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="text-xs mt-0.5">${fmtDate(r.start)} → ${fmtDate(r.end)} · ${days} business day${days === 1 ? '' : 's'}${r.reason ? ' · ' + escapeHtml(r.reason) : ''}</div>
+                    </div>
+                    ${actions}
+                </div>`;
+        }
+
+        function renderRequests() {
+            const memberFilter = document.getElementById('filter-member').value;
+            const statusFilter = document.getElementById('filter-status').value;
+            const list = state.requests
+                .filter(r => memberFilter === 'all' || r.memberId === memberFilter)
+                .filter(r => statusFilter === 'all' || r.status === statusFilter)
+                .sort((a, b) => b.start.localeCompare(a.start));
+            const el = document.getElementById('requests-list');
+            el.innerHTML = list.length
+                ? list.map(r => requestRow(r)).join('')
+                : '<p class="text-sm text-gray-500">No requests match these filters.</p>';
+        }
+
+        function renderTeam() {
+            const el = document.getElementById('team-list');
+            el.innerHTML = state.members.length
+                ? state.members.map(m => `
+                    <div class="border rounded p-3 flex items-center justify-between">
+                        <div>
+                            <div class="font-semibold text-gray-800">${escapeHtml(m.name)}</div>
+                            <div class="text-xs text-gray-500">${escapeHtml(m.role || '—')} · ${m.allowance} days / year</div>
+                        </div>
+                        <div class="flex gap-1">
+                            <button data-action="edit-member"   data-id="${m.id}" class="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200">Edit allowance</button>
+                            <button data-action="remove-member" data-id="${m.id}" class="text-xs px-2 py-1 rounded bg-red-100 hover:bg-red-200 text-red-800">Remove</button>
+                        </div>
+                    </div>`).join('')
+                : '<p class="text-sm text-gray-500">No team members yet. Add one above, or load the sample team from Sync &amp; Data.</p>';
+        }
+
+        function renderSettings() {
+            document.getElementById('year-input').value = state.settings.year;
+        }
+
+        /* ---------- Calendar ---------- */
+        function renderCalendar() {
+            const cursor = parseISO(state.calCursor);
+            const year = cursor.getFullYear();
+            const month = cursor.getMonth();
+            document.getElementById('cal-title').textContent =
+                cursor.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+
+            const first = new Date(year, month, 1);
+            const firstDow = (first.getDay() + 6) % 7;
+            const gridStart = new Date(year, month, 1 - firstDow);
+            const grid = document.getElementById('cal-grid');
+            grid.innerHTML = '';
+            const todayStr = todayISO();
+
+            for (let i = 0; i < 42; i++) {
+                const d = new Date(gridStart);
+                d.setDate(gridStart.getDate() + i);
+                const iso = d.toISOString().slice(0, 10);
+                const other = d.getMonth() !== month;
+                const isToday = iso === todayStr;
+                const leaves = state.requests
+                    .filter(r => r.status !== 'rejected')
+                    .filter(r => r.start <= iso && iso <= r.end);
+                const cell = document.createElement('div');
+                cell.className = 'cal-day' + (other ? ' other-month' : '') + (isToday ? ' today' : '');
+                cell.innerHTML = `
+                    <div class="text-right"><span class="day-number inline-block">${d.getDate()}</span></div>
+                    ${leaves.map(r => `<div class="pill leave-${r.type}" title="${escapeHtml(memberName(r.memberId))} — ${r.type} (${r.status})">${escapeHtml(memberName(r.memberId).split(' ')[0])}${r.status === 'pending' ? ' *' : ''}</div>`).join('')}
+                `;
+                grid.appendChild(cell);
+            }
+        }
+
+        document.getElementById('cal-prev').addEventListener('click', () => {
+            const c = parseISO(state.calCursor);
+            c.setMonth(c.getMonth() - 1);
+            state.calCursor = c.toISOString().slice(0, 10);
+            saveState(); renderCalendar();
+        });
+        document.getElementById('cal-next').addEventListener('click', () => {
+            const c = parseISO(state.calCursor);
+            c.setMonth(c.getMonth() + 1);
+            state.calCursor = c.toISOString().slice(0, 10);
+            saveState(); renderCalendar();
+        });
+
+        /* ---------- Forms ---------- */
+        document.getElementById('leave-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const f = e.target;
+            if (!f.memberId.value) { alert('Add a team member first.'); return; }
+            if (f.end.value < f.start.value) { alert('End date must be on or after start date.'); return; }
+            state.requests.push({
+                id: uid(),
+                memberId: f.memberId.value,
+                type: f.type.value,
+                start: f.start.value,
+                end: f.end.value,
+                reason: f.reason.value.trim(),
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            });
+            saveState();
+            f.reset();
+            renderAll();
+            flashTab('requests');
+        });
+
+        document.getElementById('member-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const f = e.target;
+            state.members.push({
+                id: uid(),
+                name: f.name.value.trim(),
+                role: f.role.value.trim(),
+                allowance: Number(f.allowance.value) || 0
+            });
+            saveState();
+            f.reset();
+            f.allowance.value = 25;
+            renderAll();
+        });
+
+        document.getElementById('requests-list').addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const r = state.requests.find(x => x.id === btn.dataset.id);
+            if (!r) return;
+            const act = btn.dataset.action;
+            if (act === 'approve') r.status = 'approved';
+            else if (act === 'reject') r.status = 'rejected';
+            else if (act === 'reset') r.status = 'pending';
+            else if (act === 'delete') {
+                if (!confirm('Delete this request?')) return;
+                state.requests = state.requests.filter(x => x.id !== r.id);
+            }
+            saveState(); renderAll();
+        });
+
+        document.getElementById('team-list').addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const m = state.members.find(x => x.id === btn.dataset.id);
+            if (!m) return;
+            if (btn.dataset.action === 'edit-member') {
+                const v = prompt('Annual-leave days for ' + m.name + ':', m.allowance);
+                if (v === null) return;
+                const n = Number(v);
+                if (!Number.isFinite(n) || n < 0) { alert('Not a valid number.'); return; }
+                m.allowance = n;
+            } else if (btn.dataset.action === 'remove-member') {
+                if (!confirm('Remove ' + m.name + '? Their leave requests will stay but show "Unknown".')) return;
+                state.members = state.members.filter(x => x.id !== m.id);
+            }
+            saveState(); renderAll();
+        });
+
+        document.getElementById('filter-member').addEventListener('change', renderRequests);
+        document.getElementById('filter-status').addEventListener('change', renderRequests);
+
+        document.getElementById('year-input').addEventListener('change', (e) => {
+            state.settings.year = Number(e.target.value) || new Date().getFullYear();
+            saveState(); renderDashboard();
+        });
+
+        /* ---------- Sync ---------- */
+        document.getElementById('export-btn').addEventListener('click', () => {
+            const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'agl-leave-tracker-' + todayISO() + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('import-input').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const parsed = JSON.parse(reader.result);
+                    if (!parsed.members || !parsed.requests) throw new Error('Missing fields');
+                    if (!confirm('Replace all current data with the imported file?')) return;
+                    state = Object.assign(
+                        { settings: { year: new Date().getFullYear() }, calCursor: todayISO() },
+                        parsed
+                    );
+                    saveState(); renderAll();
+                } catch (err) {
+                    alert('Could not parse that file: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        });
+
+        document.getElementById('seed-btn').addEventListener('click', () => {
+            if (state.members.length && !confirm('This will add sample members alongside existing data. Continue?')) return;
+            const samples = [
+                { name: 'Allan',  role: 'Founder',          allowance: 25 },
+                { name: 'Lauren', role: 'Creative Director', allowance: 25 },
+                { name: 'Asif',   role: 'Pod Lead',          allowance: 25 },
+                { name: 'Vuvu',   role: 'Pod Lead',          allowance: 25 },
+                { name: 'Trevon', role: 'Pod Lead',          allowance: 25 },
+                { name: 'Nik',    role: 'Pod Lead',          allowance: 25 },
+                { name: 'Sneha',  role: 'Pod Lead',          allowance: 25 },
+                { name: 'Oleg',   role: 'Pod Lead',          allowance: 25 }
+            ];
+            samples.forEach(s => state.members.push(Object.assign({ id: uid() }, s)));
+            saveState(); renderAll();
+        });
+
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            if (!confirm('Delete ALL data in this browser? This cannot be undone.')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            state = loadState();
+            renderAll();
+        });
+
+        /* ---------- Helpers ---------- */
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        function flashTab(name) {
+            const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
+            if (btn && !btn.classList.contains('tab-active')) {
+                btn.classList.add('ring-2', 'ring-violet-400');
+                setTimeout(() => btn.classList.remove('ring-2', 'ring-violet-400'), 800);
+            }
+        }
+
+        renderAll();
+    })();
+    </script>
+</body>
+</html>
